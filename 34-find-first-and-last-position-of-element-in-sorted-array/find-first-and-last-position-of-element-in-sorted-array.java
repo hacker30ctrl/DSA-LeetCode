@@ -1,14 +1,14 @@
 class Solution {
+
     public int[] searchRange(int[] nums, int target) {
 
-        int first = findFirst(nums, target);
-        int last = findLast(nums, target);
+        int first = firstPosition(nums, target);
+        int second = lastPosition(nums, target);
 
-        return new int[]{first, last};
+        return new int[]{first, second};
     }
 
-    // Find first occurrence
-    private int findFirst(int[] nums, int target) {
+    public int firstPosition(int[] nums, int target) {
 
         int low = 0;
         int high = nums.length - 1;
@@ -20,7 +20,7 @@ class Solution {
 
             if (nums[mid] == target) {
                 ans = mid;
-                high = mid - 1;   // search further left
+                high = mid - 1;   // search left
             }
             else if (nums[mid] < target) {
                 low = mid + 1;
@@ -33,8 +33,7 @@ class Solution {
         return ans;
     }
 
-    // Find last occurrence
-    private int findLast(int[] nums, int target) {
+    public int lastPosition(int[] nums, int target) {
 
         int low = 0;
         int high = nums.length - 1;
@@ -46,7 +45,7 @@ class Solution {
 
             if (nums[mid] == target) {
                 ans = mid;
-                low = mid + 1;    // search further right
+                low = mid + 1;    // search right
             }
             else if (nums[mid] < target) {
                 low = mid + 1;
